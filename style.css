@@ -101,6 +101,7 @@ nav a {
 
 .hero {
   display: grid;
+  gap: 60px;
   grid-template-columns: 1fr 1fr;
   align-items: center;
   padding: 60px 80px 140px;
@@ -168,31 +169,76 @@ nav a {
 .hero-right {
   display: flex;
   justify-content: center;
+  align-items: center;
   position: relative;
 }
 
-.hero-shape {
-  width: 520px;
-  height: 650px;
-  overflow: hidden;
-  border-radius: 45% 55% 60% 40% / 30% 30% 70% 70%;
+.hero-right::before {
+  content: "";
+  position: absolute;
+
+  width: 700px;
+  height: 700px;
+
+  background:
+    radial-gradient(circle,
+    rgba(0,0,0,0.05),
+    transparent 70%);
+
+  filter: blur(60px);
+
+  z-index: -1;
 }
 
 .hero-shape {
-  width: 560px;
-  height: 720px;
+  width: 620px;
+  height: 680px;
+
   overflow: hidden;
   position: relative;
 
-  clip-path: path(
-    "M128 0C232 0 351 0 462 0C529 0 560 31 560 99V603C560 679 507 720 430 720H134C52 720 0 665 0 583V151C0 67 49 0 128 0Z"
-  );
+  border-radius:
+    140px 140px 40px 140px;
+
+  transform: rotate(-7deg);
+
+  background: #d9d5cf;
 
   box-shadow:
-    0 60px 120px rgba(0,0,0,0.12),
-    0 20px 40px rgba(0,0,0,0.08);
+    0 80px 120px rgba(0,0,0,0.10),
+    0 30px 50px rgba(0,0,0,0.06);
+}
 
-  transform: rotate(-6deg);
+
+.hero-shape img {
+  width: 118%;
+  height: 118%;
+  object-fit: cover;
+
+  transform:
+    rotate(7deg)
+    scale(1.03)
+    translate(-30px, -10px);
+
+  filter:
+    brightness(0.9)
+    contrast(1.02)
+    saturate(0.82);
+}
+
+.hero-shape::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.04),
+      rgba(0,0,0,0.18)
+    );
+
+  pointer-events: none;
 }
 
 .services-section {
@@ -388,35 +434,6 @@ footer h2 {
   .hero-text {
     font-size: 18px;
   }
-
-  .hero-shape img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-
-  filter:
-    contrast(1.05)
-    brightness(0.92)
-    saturate(0.85);
-
-  transform: scale(1.05);
-}
-
-/* cinematic overlay */
-.hero-shape::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-
-  background:
-    linear-gradient(
-      to bottom,
-      rgba(255,255,255,0.05),
-      rgba(0,0,0,0.2)
-    );
-
-  pointer-events: none;
-}
 
   .service-grid,
   .stats-row {

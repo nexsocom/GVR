@@ -1,9 +1,16 @@
-document.querySelectorAll('a').forEach(link => {
-  link.addEventListener('mouseenter', () => {
-    link.style.opacity = '0.7';
-  });
+const fadeElements = document.querySelectorAll(
+  '.service-card, .about-content, .hero-left'
+);
 
-  link.addEventListener('mouseleave', () => {
-    link.style.opacity = '1';
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+    }
   });
+});
+
+fadeElements.forEach((element) => {
+  element.classList.add('hidden');
+  observer.observe(element);
 });
